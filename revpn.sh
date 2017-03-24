@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-name="NAME-OF-CONNECTION"
+name=$1
 
 
 uuid=$(nmcli con | grep $name | awk '{print $2}')
@@ -11,7 +11,8 @@ do
 		echo "Disconnected, trying to reconnect..."
 		(sleep 1s && nmcli con up uuid $uuid)
 	else
-		echo "Already connected !"
+		echo -n .
 	fi
-	sleep 30
+	sleep 3
 done
+
